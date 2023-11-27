@@ -1,0 +1,18 @@
+﻿@page "/"
+@inject IConfiguration _configuration
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, @MachineName (@Version)</h1>
+
+@code
+{
+    private string MachineName;
+    private string Version;
+
+    protected override void OnInitialized()
+    {
+        MachineName = Environment.MachineName;
+        Version = _configuration.GetValue<string>("Version") ?? "v0";
+    }
+}
